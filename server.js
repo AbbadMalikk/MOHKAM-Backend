@@ -1,4 +1,4 @@
-import express from 'express';
+import express, {Request, Response} from 'express';
 import dotenv from "dotenv"
 import connectDB from './connectDB/connectDB.js'; // Adjust the path as per your directory structure
 import userRoutes from "./routes/userRoutes.js"
@@ -35,6 +35,10 @@ cloudinary.config({
   api_key: process.env.CLOUDINARY_API_KEY,
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
+
+app.get("/health", async (req, res)=>{
+  res.send({message:"health OK!"})
+} )
 
 //Routes
 app.use("/api/users",userRoutes)
